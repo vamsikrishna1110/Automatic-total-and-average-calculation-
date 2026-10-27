@@ -1,0 +1,139 @@
+# Student Marks Calculator
+
+Save this code as `index.html`.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            width: 340px;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px #c5c9d8;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4338ca;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .results {
+            background: #eef2ff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+
+        .results p {
+            margin: 5px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #4338ca;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #312e81;
+        }
+
+        #message {
+            color: #dc2626;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Marks Calculator</h2>
+
+        <label>Subject 1</label>
+        <input type="number" class="marks" min="0" max="100"
+               placeholder="Enter marks">
+
+        <label>Subject 2</label>
+        <input type="number" class="marks" min="0" max="100"
+               placeholder="Enter marks">
+
+        <label>Subject 3</label>
+        <input type="number" class="marks" min="0" max="100"
+               placeholder="Enter marks">
+
+        <label>Subject 4</label>
+        <input type="number" class="marks" min="0" max="100"
+               placeholder="Enter marks">
+
+        <label>Subject 5</label>
+        <input type="number" class="marks" min="0" max="100"
+               placeholder="Enter marks">
+
+        <button onclick="calculate()">Calculate Results</button>
+
+        <div class="results">
+            <p>Total: <strong id="total">0 / 500</strong></p>
+            <p>Average: <strong id="average">0</strong></p>
+            <p>Percentage: <strong id="percentage">0%</strong></p>
+            <p>Grade: <strong id="grade">-</strong></p>
+            <p id="message"></p>
+        </div>
+    </div>
+
+    <script>
+        const inputs = document.querySelectorAll(".marks");
+
+        // Automatically update results when marks change
+        inputs.forEach(input => {
+            input.addEventListener("input", calculate);
+        });
+
+        function calculate() {
+            let total = 0;
+            let complete = true;
+            let valid = true;
+
+            inputs.forEach(input => {
+                if (input.value === "") {
+                    complete = false;
+                }
+
+               
